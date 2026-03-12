@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  /* ========================
+     MAIN BRAND COLORS
+  ======================== */
+
+  --color-primary: #ff3da0;
+  --color-primary-hover: #ff5bb0;
+  --color-primary-dark: #d92b86;
+
+  /* ========================
+     BACKGROUND COLORS
+  ======================== */
+
+  --bg-main: #0f0f0f;
+  --bg-surface: #161616;
+  --bg-surface-light: #1e1e1e;
+
+  /* ========================
+     TEXT COLORS
+  ======================== */
+
+  --text-primary: #ffffff;
+  --text-secondary: #cfcfcf;
+  --text-muted: #8a8a8a;
+
+  /* ========================
+     BORDER COLORS
+  ======================== */
+
+  --border-color: #2b2b2b;
+  --border-color-secondary: #774c62;
+  --border-light: #3a3a3a;
+
+  /* ========================
+     HOVER COLORS
+  ======================== */
+
+  --hover-bg: #242424;
+  --hover-primary: rgba(247, 191, 220, 0.15);
+
+  /* ========================
+     BUTTON COLORS
+  ======================== */
+
+  --btn-secondary: #262626;
+  --btn-secondary-hover: #333333;
+
+  /* ========================
+     TABLE COLORS
+  ======================== */
+
+  --table-header: #ff3da0;
+  --table-header-hover: #ff5bb0;
+  --table-row-hover: #222222;
+
+  --font-brand: "Dancing Script", cursive;
+  --font-brand-secondary: "Noto Rashi Hebrew", sans-serif;
+  /* --font-main: "Inter", sans-serif; */
+  --font-main: "Bitter", serif;
+}
+
+html,
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+   scroll-behavior: smooth;
+}
+
+/* ========================
+   SURFACES
+======================== */
+
+.surface {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+}
+
+.surface-light {
+  background: var(--bg-surface-light);
+}
+
+/* ========================
+   BUTTONS
+======================== */
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  border-radius: 6px;
+  padding: 10px 18px;
+  transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--btn-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--btn-secondary-hover);
+}
+
+/* ========================
+   INPUTS
+======================== */
+
+.input {
+  background: var(--bg-surface-light);
+  border: 1px solid var(--border-color);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* ========================
+   TABLE
+======================== */
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* HEADER */
+
+.table thead {
+  background: var(--table-header);
+}
+
+.table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* BODY */
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: small;
+}
+
+/* Row hover only for body */
+
+.table tbody tr:hover {
+  background: var(--table-row-hover);
+}
+
+/* Remove border from last row */
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========================
+   CUSTOM SCROLLBAR
+======================== */
+
+/* Chrome, Edge, Safari */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color-secondary);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Firefox */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-secondary) var(--bg-main);
+}
