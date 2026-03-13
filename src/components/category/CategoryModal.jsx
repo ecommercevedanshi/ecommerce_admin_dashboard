@@ -76,7 +76,7 @@ const { data: mediaImages } = useGetMediaByEntityQuery(
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/60">
-      <div className="surface p-6 rounded-lg w-[420px]">
+      <div className="surface p-6 rounded-lg w-[420px] h-[60vh] overflow-y-auto">
         <h2 className="text-lg mb-4">
           {category ? "Update Category" : "Create Category"}
         </h2>
@@ -134,7 +134,7 @@ const { data: mediaImages } = useGetMediaByEntityQuery(
 
 {mediaFolders?.data?.map((folder) => (
 
-<option key={folder._id} value={folder.entityId}>
+<option key={folder._id} value={folder._id}>
 {folder.baseName}
 </option>
 

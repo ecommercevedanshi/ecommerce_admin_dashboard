@@ -1,13 +1,25 @@
 import { useState } from "react";
+
 import Card from "../../components/ui/Card";
 import StatCard from "../../components/ui/StatCard";
 import DataTable from "../../components/ui/DataTable";
 
+import { useGetProductsQuery } from "../../features/products/productApiSlice"
+
+import ProductModal from "../../components/products/ProductModal";
+
 const Products = () => {
 
   const [search, setSearch] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const { data } = useGetProductsQuery();
+
+  const products = data?.data?.products || [];
 
   const columns = [
+    "Image",
     "Product",
     "Category",
     "Price",
@@ -16,32 +28,37 @@ const Products = () => {
     "Action"
   ];
 
-  const data = [
-    ["Sneakers", "Footwear", "$120", "24", "In Stock", "Edit"],
-    ["Leather Jacket", "Clothing", "$240", "8", "In Stock", "Edit"],
-    ["Backpack", "Accessories", "$80", "0", "Out of Stock", "Edit"],
-    ["Running Shoes", "Footwear", "$140", "15", "In Stock", "Edit"],
-  ];
+  const rows = products.map((product) => [
+
+    <img
+      src={product.images?.[0]?.url}
+      className="w-12 h-12 object-cover rounded"
+    />,
+
+    product.name,
+
+    product.category,
+
+    product.minPrice,
+
+    product.totalStock,
+
+    product.status,
+
+    <button
+      className="btn-secondary text-xs"
+      onClick={() => {
+        setSelectedProduct(product);
+        setOpenModal(true);
+      }}
+    >
+      Edit
+    </button>
+
+  ]);
 
   return (
     <div className="space-y-6">
-
-      {/* Product Stats */}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-        <StatCard label="Total Products" value="320" />
-
-        <StatCard label="In Stock" value="280" />
-
-        <StatCard label="Out of Stock" value="40" />
-
-        <StatCard label="Categories" value="12" />
-
-      </div>
-
-
-      {/* Search + Add */}
 
       <Card>
 
@@ -60,7 +77,13 @@ const Products = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
 
-            <button className="btn-primary">
+            <button
+              className="btn-primary"
+              onClick={() => {
+                setSelectedProduct(null);
+                setOpenModal(true);
+              }}
+            >
               Add Product
             </button>
 
@@ -70,17 +93,21 @@ const Products = () => {
 
       </Card>
 
-
-      {/* Products Table */}
-
       <Card>
 
         <DataTable
           columns={columns}
-          data={data}
+          data={rows}
         />
 
       </Card>
+
+      {openModal && (
+        <ProductModal
+          close={() => setOpenModal(false)}
+          product={selectedProduct}
+        />
+      )}
 
     </div>
   );
