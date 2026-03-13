@@ -1,4 +1,15 @@
-import { LayoutDashboard, Users, Settings, ShoppingBag, X, Package, Tag, FileText } from "lucide-react";
+import {
+  LayoutDashboard,
+  Users,
+  Settings,
+  ShoppingBag,
+  X,
+  Package,
+  Tag,
+  FileText,
+  ListTree,
+  Images,
+} from "lucide-react";
 
 import { NavLink } from "react-router-dom";
 
@@ -14,6 +25,16 @@ const menu = [
     path: "/users",
   },
   {
+    name: "Media",
+    icon: Images,
+    path: "/media",
+  },
+  {
+    name: "Categories",
+    icon: ListTree,
+    path: "/categories",
+  },
+  {
     name: "Products",
     icon: ShoppingBag,
     path: "/products",
@@ -21,18 +42,18 @@ const menu = [
   {
     name: "Orders",
     icon: Package,
-    path: "/orders"
+    path: "/orders",
   },
   {
-  name: "Coupons",
-  icon: Tag,
-  path: "/coupons"
-},
-{
-  name: "CMS",
-  icon: FileText,
-  path: "/cms"
-},
+    name: "Coupons",
+    icon: Tag,
+    path: "/coupons",
+  },
+  {
+    name: "CMS",
+    icon: FileText,
+    path: "/cms",
+  },
   {
     name: "Settings",
     icon: Settings,
@@ -57,8 +78,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, collapsed }) => {
     >
       {/* Logo */}
 
-     <div
-  className="
+      <div
+        className="
   h-16
   flex
   items-center
@@ -67,67 +88,56 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, collapsed }) => {
   border-b
   border-[var(--border-color)]
   "
->
-
-  {/* Logo */}
-
-  {!collapsed ? (
-
-    <div className="leading-none">
-
-      <div
-        className="text-[26px] text-[var(--color-primary)]"
-        style={{ fontFamily: "var(--font-brand)" }}
       >
-        Vedanshi
+        {/* Logo */}
+
+        {!collapsed ? (
+          <div className="leading-none">
+            <div
+              className="text-[26px] text-[var(--color-primary)]"
+              style={{ fontFamily: "var(--font-brand)" }}
+            >
+              Jaimax
+            </div>
+
+            <div
+              className="text-[11px] tracking-[0.35em] text-[var(--text-secondary)]"
+              style={{
+                fontFamily: "var(--font-brand-secondary)",
+                marginTop: "-2px",
+                marginLeft: "32px",
+              }}
+            >
+              Clothing
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center gap-1">
+            <span
+              className="text-[24px] text-[var(--color-primary)]"
+              style={{ fontFamily: "var(--font-brand)" }}
+            >
+              V
+            </span>
+
+            <span
+              className="text-[18px] text-[var(--text-secondary)]"
+              style={{ fontFamily: "var(--font-brand-secondary)" }}
+            >
+              C
+            </span>
+          </div>
+        )}
+
+        {/* Close button (mobile only) */}
+
+        <button
+          className="lg:hidden text-[var(--text-secondary)] hover:text-white transition"
+          onClick={() => setSidebarOpen(false)}
+        >
+          <X size={20} />
+        </button>
       </div>
-
-      <div
-        className="text-[11px] tracking-[0.35em] text-[var(--text-secondary)]"
-        style={{
-          fontFamily: "var(--font-brand-secondary)",
-          marginTop: "-2px",
-          marginLeft: "32px",
-        }}
-      >
-        CREATIONS
-      </div>
-
-    </div>
-
-  ) : (
-
-    <div className="flex items-center gap-1">
-
-      <span
-        className="text-[24px] text-[var(--color-primary)]"
-        style={{ fontFamily: "var(--font-brand)" }}
-      >
-        V
-      </span>
-
-      <span
-        className="text-[18px] text-[var(--text-secondary)]"
-        style={{ fontFamily: "var(--font-brand-secondary)" }}
-      >
-        C
-      </span>
-
-    </div>
-
-  )}
-
-
-  {/* Close button (mobile only) */}
-
-  <button
-    className="lg:hidden text-[var(--text-secondary)] hover:text-white transition"
-    onClick={() => setSidebarOpen(false)}
-  >
-    <X size={20} />
-  </button>
-
-</div>
 
       {/* Menu */}
 
