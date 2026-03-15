@@ -38,6 +38,8 @@ const Media = () => {
     "Actions",
   ];
 
+  console.log(editMedia)
+
   const rows =
   data?.data?.map((item) => {
 
@@ -66,7 +68,7 @@ const Media = () => {
 
         <button
           className="btn-secondary text-xs"
-          onClick={() => setSelectedEntity(item.entityId)}
+          onClick={() => setSelectedEntity(item._id)}
         >
           View
         </button>

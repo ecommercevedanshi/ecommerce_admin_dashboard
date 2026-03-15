@@ -2,8 +2,8 @@ import { useState } from "react";
 import {
   useAdminGetAllCategoriesQuery,
   useDeleteCategoryMutation,
-} from "./categoryApiSlice.js"
-import CategoryModal from "./Categorymodal"
+} from "../../features/category/categoryApiSlice"
+import CategoryModal from "../../components/category/CategoryModal"
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

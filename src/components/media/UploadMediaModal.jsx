@@ -158,10 +158,14 @@ const UploadMediaModal = ({ close, media }) => {
 
   const entityId = user?.user?.id || user?.id;
 
+  console.log(media)
+
   // console.log(entityId)
 
   const mainCategories =
     categories?.data?.categories?.filter((c) => !c.parent) || [];
+
+  // console.log(categories?.data)
 
   const initialValues = {
     baseName: media?.baseName || "",

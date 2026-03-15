@@ -35,7 +35,12 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
-    const token = getState()?.auth?.user?.token;
+     let token = getState()?.auth?.user?.token;
+
+  if (!token) {
+    const storedUser = JSON.parse(localStorage.getItem("admin"));
+    token = storedUser?.refreshToken;
+  }
     
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
@@ -48,7 +53,12 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   
   let result = await baseQuery(args, api, extraOptions);
-  const refreshToken = api.getState()?.auth?.user?.refreshToken;
+  let refreshToken = api.getState()?.auth?.user?.refreshToken;
+
+if (!refreshToken) {
+  const storedUser = JSON.parse(localStorage.getItem("admin"));
+  refreshToken = storedUser?.refreshToken;
+}
 
   // If access token expired
   if (result?.error?.status === 401) {
@@ -69,11 +79,13 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 if (refreshResult?.data) {
       // const currentUser = api.getState().auth.user;
 
+      console.log(refreshResult?.data?.data)
+
       // Store new token
       api.dispatch(
         setCredentials({
     ...api.getState().auth.user,
-    token: refreshResult.data.token,
+    token: refreshResult?.data?.data.accessToken,
   })
       );
 
